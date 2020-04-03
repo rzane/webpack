@@ -62,12 +62,14 @@ export const babel = (): Hook => {
     module: {
       rules: [
         {
-          use: require.resolve("babel-loader"),
           test: /\.(js|mjs|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          options: {
-            cacheDirectory: true
-          }
+          use: [
+            {
+              loader: require.resolve("babel-loader"),
+              options: { cacheDirectory: true }
+            }
+          ]
         }
       ]
     },

@@ -10,11 +10,15 @@ exports[`builds a development config 1`] = `
       "rules": Array [
         Object {
           "exclude": /node_modules/,
-          "options": Object {
-            "cacheDirectory": true,
-          },
           "test": /\\\\\\.\\(js\\|mjs\\|jsx\\|ts\\|tsx\\)\\$/,
-          "use": "/node_modules/babel-loader/lib/index.js",
+          "use": Array [
+            Object {
+              "loader": "/node_modules/babel-loader/lib/index.js",
+              "options": Object {
+                "cacheDirectory": true,
+              },
+            },
+          ],
         },
         Object {
           "test": /\\\\\\.css\\$/,
@@ -112,11 +116,15 @@ exports[`builds a production config 1`] = `
       "rules": Array [
         Object {
           "exclude": /node_modules/,
-          "options": Object {
-            "cacheDirectory": true,
-          },
           "test": /\\\\\\.\\(js\\|mjs\\|jsx\\|ts\\|tsx\\)\\$/,
-          "use": "/node_modules/babel-loader/lib/index.js",
+          "use": Array [
+            Object {
+              "loader": "/node_modules/babel-loader/lib/index.js",
+              "options": Object {
+                "cacheDirectory": true,
+              },
+            },
+          ],
         },
         Object {
           "test": /\\\\\\.css\\$/,
