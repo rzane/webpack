@@ -1,10 +1,16 @@
 {
   "name": "@stackup/webpack",
+  "version": "0.1.0-alpha.0",
   "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
     "prepack": "tsc -b"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "jest": {
     "preset": "ts-jest"
   },
