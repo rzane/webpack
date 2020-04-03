@@ -2,11 +2,16 @@ import _merge from "webpack-merge";
 import { Configuration, Entry } from "webpack";
 import CompressionPlugin from "compression-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import InlineChunkHtmlPlugin from "html-webpack-inline-chunk-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
-import { Hook, ModeOptions, OutputOptions, Mode } from "./types";
+import { Hook, ModeOptions, OutputOptions, Mode, FilesOptions } from "./types";
+
+const assert = (test: any, message: string) => {
+  if (!test) {
+    throw new Error(message);
+  }
+};
 
 /**
  * Merge configuration
@@ -27,7 +32,7 @@ export const mode = (opts: ModeOptions): Hook => config => {
 /**
  * Set entrypoints
  */
-export const entry = (entry: Entry): Hook => {
+export const entry = (entry: string | string[] | Entry): Hook => {
   return merge({ entry });
 };
 
@@ -35,6 +40,8 @@ export const entry = (entry: Entry): Hook => {
  * Set the output directory
  */
 export const output = ({ path, publicPath }: OutputOptions): Hook => {
+  assert(path, "`output` expects a `path` property");
+
   return mode({
     development: merge({
       output: {
@@ -140,7 +147,7 @@ export const svg = (): Hook => {
             require.resolve("@svgr/webpack"),
             {
               loader: require.resolve("file-loader"),
-              options: { name: "static/media/[name].[hash:8].[ext]" }
+              options: { name: "assets/media/[name].[hash:8].[ext]" }
             }
           ]
         }
@@ -150,17 +157,22 @@ export const svg = (): Hook => {
 };
 
 /**
- * Fallback to loading files via URL
- * NOTE: This should be the last loader in your pipeline!
+ * Load files via URL
  */
-export const files = (): Hook => {
+export const files = (options: FilesOptions): Hook => {
+  assert(options.test, "`files` expects a `test` property");
+
   return merge({
     module: {
       rules: [
         {
-          use: require.resolve("file-loader"),
-          exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-          options: { name: "static/media/[name].[hash:8].[ext]" }
+          test: options.test,
+          use: [
+            {
+              loader: require.resolve("file-loader"),
+              options: { name: "assets/media/[name].[hash:8].[ext]" }
+            }
+          ]
         }
       ]
     }
@@ -171,15 +183,8 @@ export const files = (): Hook => {
  * Produce an HTML file
  */
 export const html = (options: HtmlWebpackPlugin.Options = {}): Hook => {
-  return mode({
-    default: merge({
-      plugins: [new HtmlWebpackPlugin(options)]
-    }),
-    production: merge({
-      plugins: [
-        new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/])
-      ]
-    })
+  return merge({
+    plugins: [new HtmlWebpackPlugin(options)]
   });
 };
 

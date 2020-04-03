@@ -3527,14 +3527,6 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-webpack-inline-chunk-plugin@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/html-webpack-inline-chunk-plugin/-/html-webpack-inline-chunk-plugin-1.1.1.tgz#6bc7d784e1e668a50e61d14ee1560b607e3a79c8"
-  integrity sha1-a8fXhOHmaKUOYdFO4VYLYH46ecg=
-  dependencies:
-    lodash "^4.15.0"
-    source-map-url "^0.4.0"
-
 html-webpack-plugin@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-4.0.4.tgz#90cdfb168094e93e047174d9baca098ec5540636"
@@ -4608,7 +4600,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.15.0, lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.5:
+lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.5:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
