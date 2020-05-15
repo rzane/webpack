@@ -1,11 +1,8 @@
-import { Configuration } from "webpack";
+import { Configuration, Entry } from "webpack";
 
-export interface Config extends Configuration {
-  devServer?: any;
-}
-
+export type { Configuration, Entry };
 export type Mode = "development" | "production";
-export type Hook = (context: Config) => Config;
+export type Hook = (context: Configuration) => Configuration;
 
 export interface ModeOptions {
   default?: Hook;

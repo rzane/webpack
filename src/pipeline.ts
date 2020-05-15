@@ -1,9 +1,9 @@
-import { Hook, Mode, Config } from "./types";
+import { Hook, Mode, Configuration } from "./types";
 
 /**
  * Create a webpack configuration factory from a set of hooks
  */
-export const pipeline = (hooks: Hook[]) => (env: Mode): Config => {
+export const pipeline = (hooks: Hook[]) => (env: Mode): Configuration => {
   /**
    * Set the `NODE_ENV` for downstream tools to consume.
    */
@@ -12,8 +12,8 @@ export const pipeline = (hooks: Hook[]) => (env: Mode): Config => {
   /**
    * Build our initial configuration object
    */
-  const config: Config = {
-    mode: env
+  const config: Configuration = {
+    mode: env,
   };
 
   /**

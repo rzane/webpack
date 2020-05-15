@@ -1,11 +1,18 @@
 import _merge from "webpack-merge";
-import { Configuration, Entry } from "webpack";
 import CompressionPlugin from "compression-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
-import { Hook, ModeOptions, OutputOptions, Mode, FilesOptions } from "./types";
+import {
+  Configuration,
+  Entry,
+  FilesOptions,
+  Hook,
+  Mode,
+  ModeOptions,
+  OutputOptions,
+} from "./types";
 
 const assert = (test: any, message: string) => {
   if (!test) {
@@ -16,15 +23,15 @@ const assert = (test: any, message: string) => {
 /**
  * Merge configuration
  */
-export const merge = (updates: Configuration): Hook => config => {
-  return _merge(config, updates);
+export const merge = (config: Configuration): Hook => (previousConfig) => {
+  return _merge(previousConfig, config);
 };
 
 /**
  * Merge configuration based on mode
  */
-export const mode = (opts: ModeOptions): Hook => config => {
-  return [opts.default, opts[config.mode as Mode]]
+export const mode = (options: ModeOptions): Hook => (config) => {
+  return [options.default, options[config.mode as Mode]]
     .filter((hook): hook is Hook => typeof hook !== "undefined")
     .reduce((acc, fn) => fn(acc), config);
 };
@@ -39,25 +46,25 @@ export const entry = (entry: string | string[] | Entry): Hook => {
 /**
  * Set the output directory
  */
-export const output = ({ path, publicPath }: OutputOptions): Hook => {
-  assert(path, "`output` expects a `path` property");
+export const output = (options: OutputOptions): Hook => {
+  assert(options.path, "`output` expects a `path` property");
 
   return mode({
     development: merge({
       output: {
-        publicPath,
+        publicPath: options.publicPath,
         filename: "assets/js/[name].js",
-        chunkFilename: "assets/js/[name].chunk.js"
-      }
+        chunkFilename: "assets/js/[name].chunk.js",
+      },
     }),
     production: merge({
       output: {
-        path,
-        publicPath,
+        path: options.path,
+        publicPath: options.publicPath,
         filename: "assets/js/[name].[contenthash:8].js",
-        chunkFilename: "assets/js/[name].[contenthash:8].chunk.js"
-      }
-    })
+        chunkFilename: "assets/js/[name].[contenthash:8].chunk.js",
+      },
+    }),
   });
 };
 
@@ -74,15 +81,15 @@ export const babel = (): Hook => {
           use: [
             {
               loader: require.resolve("babel-loader"),
-              options: { cacheDirectory: true }
-            }
-          ]
-        }
-      ]
+              options: { cacheDirectory: true },
+            },
+          ],
+        },
+      ],
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".mjs", ".js"]
-    }
+      extensions: [".tsx", ".ts", ".mjs", ".js"],
+    },
   });
 };
 
@@ -100,13 +107,13 @@ export const postcss = (): Hook => {
               require.resolve("style-loader"),
               {
                 loader: require.resolve("css-loader"),
-                options: { importLoaders: 1 }
+                options: { importLoaders: 1 },
               },
-              require.resolve("postcss-loader")
-            ]
-          }
-        ]
-      }
+              require.resolve("postcss-loader"),
+            ],
+          },
+        ],
+      },
     }),
     production: merge({
       module: {
@@ -117,20 +124,20 @@ export const postcss = (): Hook => {
               MiniCssExtractPlugin.loader,
               {
                 loader: require.resolve("css-loader"),
-                options: { importLoaders: 1 }
+                options: { importLoaders: 1 },
               },
-              require.resolve("postcss-loader")
-            ]
-          }
-        ]
+              require.resolve("postcss-loader"),
+            ],
+          },
+        ],
       },
       plugins: [
         new MiniCssExtractPlugin({
           filename: "assets/css/[name].[contenthash:8].css",
-          chunkFilename: "assets/css/[name].[contenthash:8].chunk.css"
-        })
-      ]
-    })
+          chunkFilename: "assets/css/[name].[contenthash:8].chunk.css",
+        }),
+      ],
+    }),
   });
 };
 
@@ -147,12 +154,12 @@ export const svg = (): Hook => {
             require.resolve("@svgr/webpack"),
             {
               loader: require.resolve("file-loader"),
-              options: { name: "assets/media/[name].[hash:8].[ext]" }
-            }
-          ]
-        }
-      ]
-    }
+              options: { name: "assets/media/[name].[hash:8].[ext]" },
+            },
+          ],
+        },
+      ],
+    },
   });
 };
 
@@ -170,12 +177,12 @@ export const files = (options: FilesOptions): Hook => {
           use: [
             {
               loader: require.resolve("file-loader"),
-              options: { name: "assets/media/[name].[hash:8].[ext]" }
-            }
-          ]
-        }
-      ]
-    }
+              options: { name: "assets/media/[name].[hash:8].[ext]" },
+            },
+          ],
+        },
+      ],
+    },
   });
 };
 
@@ -184,7 +191,7 @@ export const files = (options: FilesOptions): Hook => {
  */
 export const html = (options: HtmlWebpackPlugin.Options = {}): Hook => {
   return merge({
-    plugins: [new HtmlWebpackPlugin(options)]
+    plugins: [new HtmlWebpackPlugin(options)],
   });
 };
 
@@ -202,12 +209,12 @@ export const vendor = (): Hook => {
               test: /[\\/]node_modules[\\/]/,
               name: "vendors",
               enforce: true,
-              chunks: "all"
-            }
-          }
-        }
-      }
-    })
+              chunks: "all",
+            },
+          },
+        },
+      },
+    }),
   });
 };
 
@@ -221,10 +228,10 @@ export const minify = (): Hook => {
         minimize: true,
         minimizer: [
           new TerserPlugin({ extractComments: false }),
-          new OptimizeCSSAssetsPlugin()
-        ]
-      }
-    })
+          new OptimizeCSSAssetsPlugin(),
+        ],
+      },
+    }),
   });
 };
 
