@@ -121,7 +121,7 @@ module.exports = (api) => {
 
 To build TypeScript applications, follow the instructions in the Babel section.
 
-You'll also need to add the Babel preset for TypeScript:
+You'll also need to install the Babel preset for TypeScript:
 
     $ yarn add @babel/preset-typescript --dev
 
@@ -159,7 +159,7 @@ Those settings above instruct TypeScript to let Babel do the heavy lifting.
 
 To build React applications, follow the instructions in the Babel section.
 
-You'll also need to add the Babel preset for React:
+You'll also need to install the Babel preset for React:
 
     $ yarn add @babel/preset-react --dev
 
