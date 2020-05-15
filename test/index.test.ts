@@ -21,7 +21,7 @@ const stripFiles = (value: any) => {
 
 expect.addSnapshotSerializer({
   test: (input) => input && input.stripFiles,
-  print(input, serialize, indent) {
+  print(input: any, serialize, indent) {
     const root = new RegExp(path.join(__dirname, ".."), "g");
     return indent(serialize(input.value)).replace(root, "");
   },
