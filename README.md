@@ -17,11 +17,8 @@ Functions that you can compose to build the perfect Webpack configuration. These
 ## Usage
 
 ```javascript
-const pkg = require("./package.json");
 const path = require("path");
 const webpack = require("@stackup/webpack");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = webpack.pipeline([
   // Set your entrypoint
@@ -33,7 +30,7 @@ module.exports = webpack.pipeline([
     publicPath: "/",
   }),
 
-  // Build JavaScript with babel
+  // Build JavaScript/Typescript with Babel
   webpack.babel(),
 
   // Compile CSS with PostCSS
@@ -66,8 +63,8 @@ module.exports = webpack.pipeline([
   webpack.mode({
     development: webpack.merge({
       devServer: {
+        port: 3000,
         contentBase: "./dist",
-        port: pkg.devServer.port,
         historyApiFallback: {
           disableDotRule: true,
         },
