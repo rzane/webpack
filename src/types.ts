@@ -1,6 +1,8 @@
 import { Configuration, Entry } from "webpack";
+import { Options as HTMLOptions } from "html-webpack-plugin";
 
-export type { Configuration, Entry };
+export type { Configuration, Entry, HTMLOptions };
+
 export type Mode = "development" | "production";
 export type Hook = (context: Configuration) => Configuration;
 

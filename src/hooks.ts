@@ -10,6 +10,7 @@ import {
   Entry,
   FaviconOptions,
   FilesOptions,
+  HTMLOptions,
   Hook,
   Mode,
   ModeOptions,
@@ -191,7 +192,7 @@ export const files = (options: FilesOptions): Hook => {
 /**
  * Produce an HTML file.
  */
-export const html = (options: HtmlWebpackPlugin.Options = {}): Hook => {
+export const html = (options: HTMLOptions = {}): Hook => {
   return merge({
     plugins: [new HtmlWebpackPlugin(options)],
   });
@@ -248,6 +249,9 @@ export const gzip = (): Hook => {
  * Generate favicons and a web app manifest.
  */
 export const favicons = (options: FaviconOptions): Hook => {
+  assert(options.name, "`favicons` expected a `name` property");
+  assert(options.logo, "`favicons` expected a `logo` property");
+
   const plugin = new FaviconsWebpackPlugin({
     logo: options.logo,
     prefix: "assets/icons/",
