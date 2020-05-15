@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -euo pipefail
+
+assert-exists() {
+  local file="example/dist/$1"
+
+  if [ -f "$file" ] || [ -d "$file" ]; then
+    echo "✅ $file exists"
+  else
+    echo "❌ $file does not exist"
+    exit 1
+  fi
+}
+
+echo "==>> Installing dependencies..."
+yarn --cwd example install > /dev/null
+
+echo "==>> Building with webpack..."
+yarn --cwd example build > /dev/null
+
+echo "==>> Smoke testing..."
+assert-exists index.html
+assert-exists index.html.gz
+assert-exists assets/js
+assert-exists assets/css
+assert-exists assets/media
+assert-exists assets/icons

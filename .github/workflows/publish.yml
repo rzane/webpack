@@ -26,6 +26,9 @@ jobs:
       - name: Build docs
         run: yarn docs
 
+      - name: Build example
+        run: yarn e2e
+
       - name: Set version
         run: yarn version --new-version "${GITHUB_REF:11}" --no-git-tag-version
 

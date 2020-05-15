@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import "./index.css";
 import examplePNG from "./images/example.png";
 import { ReactComponent as ExampleSVG } from "./images/example.svg";
 

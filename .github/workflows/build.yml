@@ -18,5 +18,8 @@ jobs:
       - name: Test
         run: yarn test --ci --coverage
 
-      - name: Check docs
+      - name: Build docs
         run: yarn docs
+
+      - name: Build example
+        run: yarn e2e
