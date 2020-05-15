@@ -1,4 +1,6 @@
 /lib/
 /node_modules/
 /docs/
+/example/dist/
+/example/node_modules/
 yarn-error.log

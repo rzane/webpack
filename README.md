@@ -36,8 +36,11 @@ module.exports = webpack.pipeline([
   // Compile CSS with PostCSS
   webpack.postcss(),
 
+  // Allow importing SVG files as React components
+  webpack.svg(),
+
   // Load SVG and PNG files as plain ol' files.
-  webpack.files({ test: /\.(svg|png)$/ }),
+  webpack.files({ test: /\.(jpg|png)$/ }),
 
   // Build an HTML file and bake in all of the necessary references.
   webpack.html(),
