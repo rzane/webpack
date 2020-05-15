@@ -290,9 +290,10 @@ exports[`builds a production config 1`] = `
         "version": 4,
       },
       CompressionPlugin {
+        "emittedAssets": Set {},
         "options": Object {
           "algorithm": [Function],
-          "cache": false,
+          "cache": true,
           "compressionOptions": Object {
             "level": 9,
           },
