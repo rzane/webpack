@@ -13,6 +13,10 @@ assert-exists() {
   fi
 }
 
+
+echo "==>> Building..."
+yarn prepack
+
 echo "==>> Installing dependencies..."
 yarn --cwd example install > /dev/null
 
