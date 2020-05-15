@@ -190,7 +190,6 @@ exports[`builds a production config 1`] = `
           "options": Object {
             "cache": true,
             "cacheKeys": [Function],
-            "chunkFilter": [Function],
             "exclude": undefined,
             "extractComments": false,
             "include": undefined,
