@@ -40,21 +40,21 @@ exports[`builds a development config 1`] = `
             Object {
               "loader": "/node_modules/file-loader/dist/cjs.js",
               "options": Object {
-                "name": "static/media/[name].[hash:8].[ext]",
+                "name": "assets/media/[name].[hash:8].[ext]",
               },
             },
           ],
         },
         Object {
-          "exclude": Array [
-            /\\\\\\.\\(js\\|mjs\\|jsx\\|ts\\|tsx\\)\\$/,
-            /\\\\\\.html\\$/,
-            /\\\\\\.json\\$/,
+          "test": /\\\\\\.mp4/,
+          "use": Array [
+            Object {
+              "loader": "/node_modules/file-loader/dist/cjs.js",
+              "options": Object {
+                "name": "assets/media/[name].[hash:8].[ext]",
+              },
+            },
           ],
-          "options": Object {
-            "name": "static/media/[name].[hash:8].[ext]",
-          },
-          "use": "/node_modules/file-loader/dist/cjs.js",
         },
       ],
     },
@@ -146,21 +146,21 @@ exports[`builds a production config 1`] = `
             Object {
               "loader": "/node_modules/file-loader/dist/cjs.js",
               "options": Object {
-                "name": "static/media/[name].[hash:8].[ext]",
+                "name": "assets/media/[name].[hash:8].[ext]",
               },
             },
           ],
         },
         Object {
-          "exclude": Array [
-            /\\\\\\.\\(js\\|mjs\\|jsx\\|ts\\|tsx\\)\\$/,
-            /\\\\\\.html\\$/,
-            /\\\\\\.json\\$/,
+          "test": /\\\\\\.mp4/,
+          "use": Array [
+            Object {
+              "loader": "/node_modules/file-loader/dist/cjs.js",
+              "options": Object {
+                "name": "assets/media/[name].[hash:8].[ext]",
+              },
+            },
           ],
-          "options": Object {
-            "name": "static/media/[name].[hash:8].[ext]",
-          },
-          "use": "/node_modules/file-loader/dist/cjs.js",
         },
       ],
     },
@@ -222,7 +222,7 @@ exports[`builds a production config 1`] = `
             "chunks": "all",
             "enforce": true,
             "name": "vendors",
-            "test": /\\[\\\\\\\\\\\\/\\]node_modules\\[\\\\\\\\\\\\/\\]/,
+            "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
           },
         },
       },
@@ -271,15 +271,6 @@ exports[`builds a production config 1`] = `
           "xhtml": false,
         },
         "version": 4,
-      },
-      InlineChunkPlugin {
-        "options": Object {
-          "createHtmlTagObject": [Function],
-          "getHooks": [Function],
-          "inlineChunks": Array [],
-          "quiet": false,
-          "version": 4,
-        },
       },
       CompressionPlugin {
         "options": Object {

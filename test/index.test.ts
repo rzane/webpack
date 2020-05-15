@@ -10,7 +10,7 @@ import {
   vendor,
   minify,
   gzip,
-  files
+  files,
 } from "../src";
 
 const build = pipeline([
@@ -23,7 +23,7 @@ const build = pipeline([
   vendor(),
   minify(),
   gzip(),
-  files()
+  files({ test: /\.mp4/ }),
 ]);
 
 const stripFiles = (value: any) => {
@@ -31,11 +31,11 @@ const stripFiles = (value: any) => {
 };
 
 expect.addSnapshotSerializer({
-  test: input => input && input.stripFiles,
+  test: (input) => input && input.stripFiles,
   print(input, serialize, indent) {
     const root = new RegExp(path.join(__dirname, ".."), "g");
     return indent(serialize(input.value)).replace(root, "");
-  }
+  },
 });
 
 it("builds a development config", () => {
