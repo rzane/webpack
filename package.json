@@ -41,7 +41,7 @@
     "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.5",
+    "@types/jest": "^25.2.2",
     "jest": "^25.5.4",
     "ts-jest": "^25.3.0",
     "typedoc": "^0.17.0-3",
