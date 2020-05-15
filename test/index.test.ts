@@ -1,29 +1,18 @@
 import path from "path";
-import {
-  pipeline,
-  entry,
-  output,
-  babel,
-  postcss,
-  svg,
-  html,
-  vendor,
-  minify,
-  gzip,
-  files,
-} from "../src";
+import * as webpack from "../src";
 
-const build = pipeline([
-  entry({ app: "/tmp/a" }),
-  output({ path: "/tmp/b", publicPath: "/" }),
-  babel(),
-  postcss(),
-  svg(),
-  html(),
-  vendor(),
-  minify(),
-  gzip(),
-  files({ test: /\.mp4/ }),
+const build = webpack.pipeline([
+  webpack.entry({ app: "/tmp/a" }),
+  webpack.output({ path: "/tmp/b", publicPath: "/" }),
+  webpack.babel(),
+  webpack.postcss(),
+  webpack.svg(),
+  webpack.html(),
+  webpack.vendor(),
+  webpack.minify(),
+  webpack.gzip(),
+  webpack.files({ test: /\.mp4/ }),
+  webpack.favicons({ name: "Example", logo: "src/assets/logo.png" }),
 ]);
 
 const stripFiles = (value: any) => {

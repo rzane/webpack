@@ -94,6 +94,24 @@ exports[`builds a development config 1`] = `
         },
         "version": 4,
       },
+      FaviconsWebpackPlugin {
+        "options": Object {
+          "cache": true,
+          "favicons": Object {
+            "appName": "Example",
+            "background": "#fff",
+            "developerURL": null,
+            "icons": Object {
+              "coast": false,
+              "yandex": false,
+            },
+            "theme_color": "#fff",
+          },
+          "inject": true,
+          "logo": "src/assets/logo.png",
+          "prefix": "assets/icons/",
+        },
+      },
     ],
     "resolve": Object {
       "extensions": Array [
@@ -286,6 +304,24 @@ exports[`builds a production config 1`] = `
           "minRatio": 0.8,
           "test": undefined,
           "threshold": 0,
+        },
+      },
+      FaviconsWebpackPlugin {
+        "options": Object {
+          "cache": true,
+          "favicons": Object {
+            "appName": "Example",
+            "background": "#fff",
+            "developerURL": null,
+            "icons": Object {
+              "coast": false,
+              "yandex": false,
+            },
+            "theme_color": "#fff",
+          },
+          "inject": true,
+          "logo": "src/assets/logo.png",
+          "prefix": "assets/icons/",
         },
       },
     ],
