@@ -76,3 +76,96 @@ module.exports = webpack.pipeline([
   }),
 ]);
 ```
+
+## Babel
+
+To compile modern JavaScript, you'll first need to install Babel:
+
+    $ yarn add @babel/core @babel/preset-env core-js --dev
+
+Next, you'll need to create a `.babelrc.js` file:
+
+```javascript
+module.exports = (api) => {
+  const env = {
+    /**
+     * Import polyfills from core-js v3 as needed
+     */
+    useBuiltIns: "entry",
+    corejs: { versions: 3 },
+
+    /**
+     * Setting `modules: false` enables ES modules, which is required
+     * for tree-shaking. However, Jest doesn't support ES modules.
+     *
+     * NOTE: The environment check must happen before enabling caching.
+     */
+    modules: api.env("test") ? "commonjs" : false,
+  };
+
+  /**
+   * Enable caching
+   */
+  api.cache(true);
+
+  /**
+   * Return our configuration
+   */
+  return {
+    presets: [["@babel/preset-env", env]],
+  };
+};
+```
+
+## TypeScript
+
+To build TypeScript applications, follow the instructions in the Babel section.
+
+You'll also need to add the Babel preset for TypeScript:
+
+    $ yarn add @babel/preset-typescript --dev
+
+Then, add the preset to your Babel configuration:
+
+```diff
+- presets: [["@babel/preset-env", env]],
++ presets: [["@babel/preset-env", env], "@babel/preset-typescript"],
+```
+
+Finally, create a `tsconfig.json` file:
+
+```json
+{
+  "include": ["src", "types"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
+```
+
+The `target`, `module`, `moduleResolution`, and `jsx` are especially important.
+Those settings above instruct TypeScript to let Babel do the heavy lifting.
+
+## React
+
+To build React applications, follow the instructions in the Babel section.
+
+You'll also need to add the Babel preset for React:
+
+    $ yarn add @babel/preset-react --dev
+
+Then, add the preset to your Babel configuration:
+
+```diff
+- presets: [["@babel/preset-env", env]],
++ presets: [["@babel/preset-env", env], "@babel/preset-react"],
+```
