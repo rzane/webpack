@@ -54,6 +54,14 @@ module.exports = webpack.pipeline([
   // Enable GZIP compression
   webpack.gzip(),
 
+  // Generate favicons and a web app manifest.json
+  webpack.favicons({
+    name: "My App",
+    logo: "src/assets/logo.png",
+    backgroundColor: "#ffffff",
+    themeColor: "#6c63ff",
+  }),
+
   // Merge in environment-specific configuration
   webpack.mode({
     development: webpack.merge({

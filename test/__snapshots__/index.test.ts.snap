@@ -98,7 +98,9 @@ exports[`builds a development config 1`] = `
         "options": Object {
           "cache": true,
           "favicons": Object {
+            "appDescription": undefined,
             "appName": "Example",
+            "appShortName": undefined,
             "background": "#fff",
             "developerURL": null,
             "icons": Object {
@@ -310,7 +312,9 @@ exports[`builds a production config 1`] = `
         "options": Object {
           "cache": true,
           "favicons": Object {
+            "appDescription": undefined,
             "appName": "Example",
+            "appShortName": undefined,
             "background": "#fff",
             "developerURL": null,
             "icons": Object {

@@ -254,6 +254,8 @@ export const favicons = (options: FaviconOptions): Hook => {
     cache: true,
     favicons: {
       appName: options.name,
+      appShortName: options.shortName,
+      appDescription: options.description,
       developerURL: null,
       background: options.background || "#fff",
       theme_color: options.themeColor || "#fff",

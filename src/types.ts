@@ -47,6 +47,16 @@ export interface FaviconOptions {
   name: string;
 
   /**
+   * A shorter variant of your app's name.
+   */
+  shortName?: string;
+
+  /**
+   * A description of what your app does.
+   */
+  description?: string;
+
+  /**
    * The logo for your app. This will be used to generate favicons.
    */
   logo: string;
