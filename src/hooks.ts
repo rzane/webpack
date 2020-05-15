@@ -4,9 +4,11 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
+import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import {
   Configuration,
   Entry,
+  FaviconOptions,
   FilesOptions,
   Hook,
   Mode,
@@ -69,7 +71,7 @@ export const output = (options: OutputOptions): Hook => {
 };
 
 /**
- * Build JavaScript and TypeScript via Babel
+ * Build JavaScript and TypeScript with Babel
  */
 export const babel = (): Hook => {
   return merge({
@@ -94,7 +96,7 @@ export const babel = (): Hook => {
 };
 
 /**
- * PostCSS
+ * Compile CSS with PostCSS
  */
 export const postcss = (): Hook => {
   return mode({
@@ -142,7 +144,7 @@ export const postcss = (): Hook => {
 };
 
 /**
- * Inline SVG
+ * Inline SVG.
  */
 export const svg = (): Hook => {
   return merge({
@@ -164,7 +166,7 @@ export const svg = (): Hook => {
 };
 
 /**
- * Load files via URL
+ * Load files via URL.
  */
 export const files = (options: FilesOptions): Hook => {
   assert(options.test, "`files` expects a `test` property");
@@ -187,7 +189,7 @@ export const files = (options: FilesOptions): Hook => {
 };
 
 /**
- * Produce an HTML file
+ * Produce an HTML file.
  */
 export const html = (options: HtmlWebpackPlugin.Options = {}): Hook => {
   return merge({
@@ -196,7 +198,7 @@ export const html = (options: HtmlWebpackPlugin.Options = {}): Hook => {
 };
 
 /**
- * Create a vendor chunk
+ * Create a vendor chunk.
  */
 export const vendor = (): Hook => {
   return mode({
@@ -219,7 +221,7 @@ export const vendor = (): Hook => {
 };
 
 /**
- * Minify resulting JavaScript and CSS
+ * Minify resulting JavaScript and CSS.
  */
 export const minify = (): Hook => {
   return mode({
@@ -236,8 +238,30 @@ export const minify = (): Hook => {
 };
 
 /**
- * Enable GZIP compression
+ * Enable GZIP compression.
  */
 export const gzip = (): Hook => {
   return mode({ production: merge({ plugins: [new CompressionPlugin()] }) });
+};
+
+/**
+ * Generate favicons and a web app manifest.
+ */
+export const favicons = (options: FaviconOptions): Hook => {
+  const plugin = new FaviconsWebpackPlugin({
+    logo: options.logo,
+    prefix: "assets/icons/",
+    cache: true,
+    favicons: {
+      appName: options.name,
+      developerURL: null,
+      background: options.background || "#fff",
+      theme_color: options.themeColor || "#fff",
+      icons: { coast: false, yandex: false },
+    },
+  });
+
+  return merge({
+    plugins: [plugin],
+  });
 };
