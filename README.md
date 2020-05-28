@@ -41,7 +41,7 @@ module.exports = webpack.pipeline([
   // Allow importing SVG files as React components
   webpack.svg(),
 
-  // Load SVG and PNG files as plain ol' files.
+  // Load JPG and PNG as plain ol' files
   webpack.files({ test: /\.(jpg|png)$/ }),
 
   // Build an HTML file and bake in all of the necessary references.
@@ -59,7 +59,7 @@ module.exports = webpack.pipeline([
   // Generate favicons and a web app manifest.json
   webpack.favicons({
     name: "My App",
-    logo: "src/assets/logo.png",
+    logo: "./src/assets/logo.png",
     backgroundColor: "#ffffff",
     themeColor: "#6c63ff",
   }),
@@ -94,7 +94,7 @@ module.exports = (api) => {
      * Import polyfills from core-js v3 as needed
      */
     useBuiltIns: "entry",
-    corejs: { versions: 3 },
+    corejs: { version: 3 },
 
     /**
      * Setting `modules: false` enables ES modules, which is required
