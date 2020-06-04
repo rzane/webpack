@@ -1569,10 +1569,10 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
-"@types/compression-webpack-plugin@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@types/compression-webpack-plugin/-/compression-webpack-plugin-2.0.1.tgz#4db78c398c8e973077cc530014d6513f1c693951"
-  integrity sha512-40oKg2aByfUPShpYBkldYwOcO34yaqOIPdlUlR1+F3MFl2WfpqYq2LFKOcgjU70d1r1L8r99XHkxYdhkGajHSw==
+"@types/compression-webpack-plugin@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/compression-webpack-plugin/-/compression-webpack-plugin-4.0.0.tgz#01f14a32eaba2ba6194b0003488ca72324a929a3"
+  integrity sha512-kS1tA05uPFzdro696mqpRR6a+Q0b2VLvILXYiex6PTEisE6hR+BAfZy0yq0IQVmN7DtMkAhy6iaGrZCtNQlOtQ==
   dependencies:
     "@types/webpack" "*"
 
