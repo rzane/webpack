@@ -15,6 +15,8 @@ import {
   Mode,
   ModeOptions,
   OutputOptions,
+  Plugin,
+  Rule,
 } from "./types";
 
 const assert = (test: any, message: string) => {
@@ -69,6 +71,20 @@ export const output = (options: OutputOptions): Hook => {
       },
     }),
   });
+};
+
+/**
+ * Add a new rule
+ */
+export const rule = (rule: Rule): Hook => {
+  return merge({ module: { rules: [rule] } });
+};
+
+/**
+ * Add a new plugin
+ */
+export const plugin = (plugin: Plugin): Hook => {
+  return merge({ plugins: [plugin] });
 };
 
 /**
@@ -148,21 +164,15 @@ export const postcss = (): Hook => {
  * Inline SVG.
  */
 export const svg = (): Hook => {
-  return merge({
-    module: {
-      rules: [
-        {
-          test: /\.svg$/,
-          use: [
-            require.resolve("@svgr/webpack"),
-            {
-              loader: require.resolve("file-loader"),
-              options: { name: "assets/media/[name].[hash:8].[ext]" },
-            },
-          ],
-        },
-      ],
-    },
+  return rule({
+    test: /\.svg$/,
+    use: [
+      require.resolve("@svgr/webpack"),
+      {
+        loader: require.resolve("file-loader"),
+        options: { name: "assets/media/[name].[hash:8].[ext]" },
+      },
+    ],
   });
 };
 
@@ -172,20 +182,14 @@ export const svg = (): Hook => {
 export const files = (options: FilesOptions): Hook => {
   assert(options.test, "`files` expects a `test` property");
 
-  return merge({
-    module: {
-      rules: [
-        {
-          test: options.test,
-          use: [
-            {
-              loader: require.resolve("file-loader"),
-              options: { name: "assets/media/[name].[hash:8].[ext]" },
-            },
-          ],
-        },
-      ],
-    },
+  return rule({
+    test: options.test,
+    use: [
+      {
+        loader: require.resolve("file-loader"),
+        options: { name: "assets/media/[name].[hash:8].[ext]" },
+      },
+    ],
   });
 };
 
@@ -193,9 +197,7 @@ export const files = (options: FilesOptions): Hook => {
  * Produce an HTML file.
  */
 export const html = (options: HTMLOptions = {}): Hook => {
-  return merge({
-    plugins: [new HtmlWebpackPlugin(options)],
-  });
+  return plugin(new HtmlWebpackPlugin(options));
 };
 
 /**
@@ -252,7 +254,7 @@ export const favicons = (options: FaviconOptions): Hook => {
   assert(options.name, "`favicons` expected a `name` property");
   assert(options.logo, "`favicons` expected a `logo` property");
 
-  const plugin = new FaviconsWebpackPlugin({
+  const faviconPlugin = new FaviconsWebpackPlugin({
     logo: options.logo,
     prefix: "assets/icons/",
     cache: true,
@@ -267,7 +269,5 @@ export const favicons = (options: FaviconOptions): Hook => {
     },
   });
 
-  return merge({
-    plugins: [plugin],
-  });
+  return plugin(faviconPlugin);
 };

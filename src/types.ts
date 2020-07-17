@@ -1,7 +1,7 @@
-import { Configuration, Entry } from "webpack";
+import { Configuration, Entry, RuleSetRule as Rule, Plugin } from "webpack";
 import { Options as HTMLOptions } from "html-webpack-plugin";
 
-export type { Configuration, Entry, HTMLOptions };
+export type { Configuration, Entry, HTMLOptions, Rule, Plugin };
 
 export type Mode = "development" | "production";
 export type Hook = (context: Configuration) => Configuration;

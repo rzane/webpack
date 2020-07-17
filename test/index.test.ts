@@ -4,6 +4,15 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import CompressionPlugin from "compression-webpack-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 
+const rule: webpack.Rule = {
+  test: /foo/,
+  use: [],
+};
+
+const plugin: webpack.Plugin = {
+  apply: () => undefined,
+};
+
 const build = webpack.pipeline([
   webpack.entry({ app: "/tmp/a" }),
   webpack.output({ path: "dist", publicPath: "/" }),
@@ -14,7 +23,9 @@ const build = webpack.pipeline([
   webpack.vendor(),
   webpack.minify(),
   webpack.gzip(),
+  webpack.rule(rule),
   webpack.files({ test: /\.mp4/ }),
+  webpack.plugin(plugin),
   webpack.favicons({ name: "Example", logo: "src/assets/logo.png" }),
 ]);
 
@@ -133,4 +144,14 @@ describe("gzip", () => {
 test("favicons", () => {
   const config = build("development");
   expect(config.plugins).toContainEqual(expect.any(FaviconsWebpackPlugin));
+});
+
+test("rule", () => {
+  const config = build("development");
+  expect(config.module!.rules).toContainEqual(rule);
+});
+
+test("plugin", () => {
+  const config = build("development");
+  expect(config.plugins).toContain(plugin);
 });
