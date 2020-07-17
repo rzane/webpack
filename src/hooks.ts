@@ -1,4 +1,4 @@
-import _merge from "webpack-merge";
+import { merge as _merge } from "webpack-merge";
 import CompressionPlugin from "compression-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
