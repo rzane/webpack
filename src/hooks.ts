@@ -121,7 +121,7 @@ export const postcss = (): Hook => {
       module: {
         rules: [
           {
-            test: /\.css$/,
+            test: /\.(css|pcss|postcss)$/,
             use: [
               require.resolve("style-loader"),
               {
