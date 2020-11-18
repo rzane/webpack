@@ -5,20 +5,21 @@
     "build": "webpack --env production"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-react": "^7.9.4",
-    "@babel/preset-typescript": "^7.9.0",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "@babel/preset-typescript": "^7.12.1",
     "@stackup/webpack": "link:../",
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
-    "typescript": "^3.9.2",
-    "webpack-cli": "^3.3.11",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "postcss": "^8.1.7",
+    "typescript": "^4.0.5",
+    "webpack-cli": "3.x",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "webpack": "^4.43.0"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "4.x"
   }
 }
