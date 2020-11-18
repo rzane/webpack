@@ -14,7 +14,11 @@ Functions that you can compose to build the perfect Webpack configuration. These
 
 ## Install
 
-    $ yarn add @stackup/webpack --dev
+This should be everything you'll need:
+
+    $ yarn add @stackup/webpack webpack@4.x webpack-cli@3.x webpack-dev-server --dev
+
+This package doesn't support Webpack 5 yet, due to the fact that many webpack plugins haven't been updated for compatibility yet.
 
 ## Usage
 
