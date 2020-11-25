@@ -6010,12 +6010,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.5:
-  version "4.17.19"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
-  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
-
-lodash@^4.17.20:
+lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.5:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -8856,10 +8851,10 @@ typedoc-default-themes@0.12.0-beta.6:
   resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.12.0-beta.6.tgz#b8a0b49e00f85b0a906f3f33b13d83cf877b44de"
   integrity sha512-3B6gxssa+cecFwKNNx28dTQu/csjXnZlwv+yi2AOj/hYUdXVqC4FUGuPdYiDC3eBKiumx8H7do7VmBA7R2C57A==
 
-typedoc@^0.20.0-beta.8:
-  version "0.20.0-beta.8"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.20.0-beta.8.tgz#6fc92f37eff43901fd9f5ec9fd6690671363d8db"
-  integrity sha512-2NSno7Q+En69EkI7v7w3UhKBZT6B6bT8t6yK5C84eTNYk2oyE6NUvflEsd4Ezpp66o/spqRmICnUb0Ig6vNAzg==
+typedoc@^0.20.0-beta.12:
+  version "0.20.0-beta.12"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.20.0-beta.12.tgz#81bc76b973f361180ad764688c55c71a1d0f8acb"
+  integrity sha512-pv04s/xd4kCl+yS3ZllDf2fJ7hi2UWfo9ZHNtjHopGA7LA2PdB1WMLWrEY/eq5bO6Ppfvoaf9iN8LP3AIxJnMg==
   dependencies:
     fs-extra "^9.0.1"
     handlebars "^4.7.6"
