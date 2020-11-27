@@ -4718,10 +4718,10 @@ hex-color-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
-highlight.js@^10.3.1:
-  version "10.3.2"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.3.2.tgz#135fd3619a00c3cbb8b4cd6dbc78d56bfcbc46f1"
-  integrity sha512-3jRT7OUYsVsKvukNKZCtnvRcFyCJqSEIuIMsEybAXRiFSwpt65qjPd/Pr+UOdYt7WJlt+lj3+ypUsHiySBp/Jw==
+highlight.js@^10.4.0:
+  version "10.4.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.4.0.tgz#ef3ce475e5dfa7a48484260b49ea242ddab823a0"
+  integrity sha512-EfrUGcQ63oLJbj0J0RI9ebX6TAITbsDBLbsjr881L/X5fMO9+oadKzEF21C7R3ULKG6Gv3uoab2HiqVJa/4+oA==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -6010,12 +6010,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.5:
-  version "4.17.19"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
-  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
-
-lodash@^4.17.20:
+lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.5:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -6085,10 +6080,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-marked@^1.2.2:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-1.2.4.tgz#94e99230b03496c9383b1322ac51bc17dd388a1d"
-  integrity sha512-6x5TFGCTKSQBLTZtOburGxCxFEBJEGYVLwCMTBCxzvyuisGcC20UNzDSJhCr/cJ/Kmh6ulfJm10g6WWEAJ3kvg==
+marked@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-1.2.5.tgz#a44b31f2a0b8b5bfd610f00d55d1952d1ac1dfdb"
+  integrity sha512-2AlqgYnVPOc9WDyWu7S5DJaEZsfk6dNh/neatQ3IHUW4QLutM/VPSH9lG7bif+XjFWc9K9XR3QvR+fXuECmfdA==
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -8851,27 +8846,26 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typedoc-default-themes@0.12.0-beta.6:
-  version "0.12.0-beta.6"
-  resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.12.0-beta.6.tgz#b8a0b49e00f85b0a906f3f33b13d83cf877b44de"
-  integrity sha512-3B6gxssa+cecFwKNNx28dTQu/csjXnZlwv+yi2AOj/hYUdXVqC4FUGuPdYiDC3eBKiumx8H7do7VmBA7R2C57A==
+typedoc-default-themes@0.12.0-beta.8:
+  version "0.12.0-beta.8"
+  resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.12.0-beta.8.tgz#e0186a645739ad724bdf1bae4dd98a1c1ba11290"
+  integrity sha512-jFDN9AM6n9PhwJyBUEtMSHGU3SE1Zq02gVZi98JaCdPrN+bF8+7NmPTtEHuruWxoTXqmFh+lxIOJBvOXJ8/MEQ==
 
-typedoc@^0.20.0-beta.8:
-  version "0.20.0-beta.8"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.20.0-beta.8.tgz#6fc92f37eff43901fd9f5ec9fd6690671363d8db"
-  integrity sha512-2NSno7Q+En69EkI7v7w3UhKBZT6B6bT8t6yK5C84eTNYk2oyE6NUvflEsd4Ezpp66o/spqRmICnUb0Ig6vNAzg==
+typedoc@^0.20.0-beta.18:
+  version "0.20.0-beta.18"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.20.0-beta.18.tgz#5036b943cced1b1ef146a34266a6ef81ca749c1b"
+  integrity sha512-YTGtphFQPqXf0lZAE66hKWC/tV4buNGE96mBUHxQ1Zv2TBKW3hUsMFt6KpO1OKT/sW8FcvV/MgZwTV7c+XvXWg==
   dependencies:
     fs-extra "^9.0.1"
     handlebars "^4.7.6"
-    highlight.js "^10.3.1"
+    highlight.js "^10.4.0"
     lodash "^4.17.20"
     lunr "^2.3.9"
-    marked "^1.2.2"
+    marked "^1.2.5"
     minimatch "^3.0.0"
     progress "^2.0.3"
-    semver "^7.3.2"
     shelljs "^0.8.4"
-    typedoc-default-themes "0.12.0-beta.6"
+    typedoc-default-themes "0.12.0-beta.8"
 
 typescript@^4.0.5:
   version "4.0.5"
