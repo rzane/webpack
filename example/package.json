@@ -1,25 +1,25 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --env development",
+    "start": "webpack serve --env development",
     "build": "webpack --env production"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-react": "^7.12.5",
-    "@babel/preset-typescript": "^7.12.1",
-    "@stackup/webpack": "link:../",
-    "@types/react": "^16.9.56",
-    "@types/react-dom": "^16.9.9",
-    "postcss": "^8.1.7",
-    "typescript": "^4.0.5",
-    "webpack-cli": "3.x",
-    "webpack-dev-server": "^3.11.0"
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.12.13",
+    "@stackup/webpack": "link:..",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.0",
+    "postcss": "^8.2.4",
+    "typescript": "^4.1.3",
+    "webpack": "^5.21.1",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "webpack": "4.x"
+    "react-dom": "^17.0.1"
   }
 }

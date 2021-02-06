@@ -254,6 +254,8 @@ export const favicons = (options: FaviconOptions): Hook => {
     logo: options.logo,
     prefix: "assets/icons/",
     cache: true,
+    mode: "webapp",
+    devMode: "light",
     favicons: {
       appName: options.name,
       appShortName: options.shortName,
