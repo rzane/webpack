@@ -9,7 +9,7 @@
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.12.13",
-    "@stackup/webpack": "link:..",
+    "@stackup/webpack": "file:..",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "postcss": "^8.2.4",

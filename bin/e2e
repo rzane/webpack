@@ -13,15 +13,18 @@ assert-exists() {
   fi
 }
 
-
 echo "==>> Building..."
+yarn install
 yarn prepack
 
+echo "==>> Cleaning..."
+rm -rf node_modules example/node_modules
+
 echo "==>> Installing dependencies..."
-yarn --cwd example install > /dev/null
+yarn --cwd example install
 
 echo "==>> Building with webpack..."
-yarn --cwd example build > /dev/null
+yarn --cwd example build
 
 echo "==>> Smoke testing..."
 assert-exists index.html
