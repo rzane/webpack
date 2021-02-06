@@ -21,9 +21,6 @@
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@types/compression-webpack-plugin": "^6.0.4",
-    "@types/css-minimizer-webpack-plugin": "^1.1.1",
-    "@types/mini-css-extract-plugin": "^1.2.2",
     "babel-loader": "^8.2.2",
     "compression-webpack-plugin": "^7.1.2",
     "css-loader": "^5.0.1",
