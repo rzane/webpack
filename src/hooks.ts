@@ -3,7 +3,6 @@ import CompressionPlugin from "compression-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import TerserPlugin from "terser-webpack-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import {
   Configuration,
@@ -231,10 +230,7 @@ export const minify = (): Hook => {
     production: merge({
       optimization: {
         minimize: true,
-        minimizer: [
-          new TerserPlugin({ extractComments: false }),
-          new CssMinimizerPlugin(),
-        ],
+        minimizer: ["...", new CssMinimizerPlugin()],
       },
     }),
   });
