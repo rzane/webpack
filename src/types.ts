@@ -1,5 +1,10 @@
-import { Configuration, Entry, RuleSetRule as Rule, Plugin } from "webpack";
 import { Options as HTMLOptions } from "html-webpack-plugin";
+import {
+  Configuration,
+  Entry,
+  RuleSetRule as Rule,
+  WebpackPluginInstance as Plugin,
+} from "webpack";
 
 export type { Configuration, Entry, HTMLOptions, Rule, Plugin };
 
