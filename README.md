@@ -10,7 +10,16 @@
 
 Functions that you can compose to build the perfect Webpack configuration. These functions bake in best practices, so you can stop copy-pasting them from the internet!
 
-[View the documentation here.](docs/API.md)
+[**View the API documentation here**](docs/API.md)
+
+- [Install](#install)
+- [Usage](#usage)
+  - [Step 1: Add scripts](#step-1-add-scripts)
+  - [Step 2: Configure Babel](#step-2-configure-babel)
+  - [Step 3: Configure Webpack](#step-3-configure-webpack)
+- [Guides](#guides)
+  - [Enabling TypeScript](#enabling-typescript)
+  - [Polyfill missing browser features](#polyfill-missing-browser-features)
 
 ## Install
 
@@ -18,7 +27,7 @@ Functions that you can compose to build the perfect Webpack configuration. These
 
 ## Usage
 
-### 1. Add scripts
+#### Step 1: Add scripts
 
 Add the following to your `package.json`.
 
@@ -38,7 +47,7 @@ After adding this configuration, you can run:
 - `yarn start` to start the development server
 - `yarn build` to create a production build
 
-### 2. Configure Babel
+#### Step 2: Configure Babel
 
 This library ships with a Babel preset to get you up and running quickly.
 
@@ -54,7 +63,7 @@ To configure Babel, add the following to your `package.json`:
 }
 ```
 
-### 3. Configure Webpack
+#### Step 3: Configure Webpack
 
 This library provides a set of functions that can be composed to generate a production-ready webpack configuration file.
 
@@ -80,7 +89,7 @@ module.exports = webpack.pipeline([
 
 ## Guides
 
-### Enabling TypeScript
+#### Enabling TypeScript
 
 To use TypeScript, just install it:
 
@@ -109,7 +118,7 @@ Then, create a `tsconfig.json` file:
 The `target`, `module`, `moduleResolution`, and `jsx` are especially important.
 Those settings above instruct TypeScript to let Babel do the heavy lifting.
 
-### Polyfill missing browser features
+#### Polyfill missing browser features
 
 First, specify which browsers you want your application to support in your `package.json`:
 
