@@ -22,7 +22,7 @@ Functions that you can compose to build the perfect Webpack configuration. These
 
 Add the following to your `package.json`.
 
-```json
+```jsonc
 {
   // ...
   "scripts": {
@@ -44,7 +44,7 @@ This library ships with a Babel preset to get you up and running quickly.
 
 To configure Babel, add the following to your `package.json`:
 
-```json
+```jsonc
 {
   // ...
   "babel": {
@@ -113,7 +113,7 @@ Those settings above instruct TypeScript to let Babel do the heavy lifting.
 
 First, specify which browsers you want your application to support in your `package.json`:
 
-```json
+```jsonc
 {
   // ...
   "browserslist": {

@@ -9,6 +9,16 @@ interface Env {
 /**
  * Create a webpack configuration factory from a set of hooks
  * @public
+ * @example
+ * // webpack.config.js
+ *
+ * const webpack = require("@stackup/webpack");
+ *
+ * module.exports = webpack.pipeline([
+ *   webpack.entry("src/index.ts"),
+ *
+ *   // Put more hooks here...
+ * ]);
  */
 export const pipeline = (hooks: Hook[]) => (env: Env): Configuration => {
   const mode = env.production ? "production" : "development";
