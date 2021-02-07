@@ -1,0 +1,20 @@
+toc:
+  - pipeline
+  - name: Hooks
+    description: These functions are composed inside a pipeline.
+    children:
+      - merge
+      - mode
+      - entry
+      - output
+      - rule
+      - plugin
+      - babel
+      - postcss
+      - svg
+      - files
+      - vendor
+      - minify
+      - gzip
+      - html
+      - favicons

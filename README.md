@@ -10,7 +10,7 @@
 
 Functions that you can compose to build the perfect Webpack configuration. These functions bake in best practices, so you can stop copy-pasting them from the internet!
 
-[View the documentation here.](https://rzane.github.io/webpack/)
+[View the documentation here.](docs/API.md)
 
 ## Install
 

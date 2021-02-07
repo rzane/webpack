@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+node_modules/.bin/documentation build \
+  --config documentation.yml \
+  --output docs/API.md \
+  --format md \
+  --parse-extension ts \
+  --access public \
+  --github \
+  --shallow \
+  src/*.ts

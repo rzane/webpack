@@ -25,14 +25,26 @@ const assert = (test: any, message: string) => {
 };
 
 /**
- * Merge configuration
+ * Add custom configuration to your Webpack config.
+ * @public
+ * @example
+ * merge({
+ *   module: {
+ *     rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+ *   },
+ * })
  */
 export const merge = (config: Configuration): Hook => (previousConfig) => {
   return _merge(previousConfig, config);
 };
 
 /**
- * Merge configuration based on mode
+ * Provide environment-specific configuration.
+ * @public
+ * @example
+ * mode({
+ *   development: merge({ devtool: "cheap-module-source-map" })
+ * })
  */
 export const mode = (options: ModeOptions): Hook => (config) => {
   return [options.default, options[config.mode as Mode]]
@@ -41,7 +53,18 @@ export const mode = (options: ModeOptions): Hook => (config) => {
 };
 
 /**
- * Set entrypoints
+ * Configure the webpack entrypoint or entrypoints.
+ * @see https://webpack.js.org/concepts/entry-points/
+ * @public
+ * @example <caption>A single entrypoint</caption>
+ * entry("src/index.ts")
+ * @example <caption>Multiple entrypoints</caption>
+ * entry(["src/index.ts", "src/admin.ts"])
+ * @example <caption>Multiple named entrypoints</caption>
+ * entry({
+ *   main: "src/index.ts",
+ *   admin: "src/admin.ts"
+ * })
  */
 export const entry = (entry: string | string[] | Entry): Hook => {
   return merge({ entry });
@@ -49,6 +72,13 @@ export const entry = (entry: string | string[] | Entry): Hook => {
 
 /**
  * Set the output directory
+ * @see https://webpack.js.org/concepts/output/
+ * @public
+ * @example
+ * output({
+ *   path: path.join(__dirname, "dist"),
+ *   publicPath: "/",
+ * })
  */
 export const output = (options: OutputOptions): Hook => {
   assert(options.path, "`output` expects a `path` property");
@@ -74,6 +104,12 @@ export const output = (options: OutputOptions): Hook => {
 
 /**
  * Add a new rule
+ * @public
+ * @example
+ * rule({
+ *   test: /\.txt$/,
+ *   use: "raw-loader"
+ * })
  */
 export const rule = (rule: Rule): Hook => {
   return merge({ module: { rules: [rule] } });
@@ -81,6 +117,9 @@ export const rule = (rule: Rule): Hook => {
 
 /**
  * Add a new plugin
+ * @public
+ * @example
+ * plugin(new BannerPlugin({ banner: "Hello!" }))
  */
 export const plugin = (plugin: Plugin): Hook => {
   return merge({ plugins: [plugin] });
@@ -88,6 +127,9 @@ export const plugin = (plugin: Plugin): Hook => {
 
 /**
  * Build JavaScript and TypeScript with Babel
+ * @public
+ * @example
+ * babel()
  */
 export const babel = (): Hook => {
   return merge({
@@ -113,6 +155,9 @@ export const babel = (): Hook => {
 
 /**
  * Compile CSS with PostCSS
+ * @public
+ * @example
+ * postcss()
  */
 export const postcss = (): Hook => {
   const test = /\.(css|pcss|postcss)$/;
@@ -158,7 +203,18 @@ export const postcss = (): Hook => {
 };
 
 /**
- * Inline SVG.
+ * Allows SVG files to be imported as React components or as URLs.
+ * @public
+ * @example <caption>Enabling the hook</caption>
+ * svg()
+ * @example <caption>Importing a React component</caption>
+ * import { ReactComponent as Logo } from "./logo.svg";
+ *
+ * <Logo />
+ * @example <caption>Importing a URL to an SVG</caption>
+ * import url from "./logo.svg";
+ *
+ * <img src={url} />
  */
 export const svg = (): Hook => {
   return rule({
@@ -174,7 +230,14 @@ export const svg = (): Hook => {
 };
 
 /**
- * Load files via URL.
+ * Allows files to be imported.
+ * @public
+ * @example <caption>Enabling the hook</caption>
+ * files({ test: /\.(png|jpg)$/ })
+ * @example <caption>Importing a file</caption>
+ * import url from "./logo.png";
+ *
+ * <img src={url} />
  */
 export const files = (options: FilesOptions): Hook => {
   assert(options.test, "`files` expects a `test` property");
@@ -192,6 +255,9 @@ export const files = (options: FilesOptions): Hook => {
 
 /**
  * Produce an HTML file.
+ * @public
+ * @example
+ * html()
  */
 export const html = (options: HTMLOptions = {}): Hook => {
   return plugin(
@@ -203,51 +269,15 @@ export const html = (options: HTMLOptions = {}): Hook => {
 };
 
 /**
- * Create a vendor chunk.
- */
-export const vendor = (): Hook => {
-  return mode({
-    production: merge({
-      optimization: {
-        runtimeChunk: "single",
-        splitChunks: {
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: "vendors",
-              enforce: true,
-              chunks: "all",
-            },
-          },
-        },
-      },
-    }),
-  });
-};
-
-/**
- * Minify resulting JavaScript and CSS.
- */
-export const minify = (): Hook => {
-  return mode({
-    production: merge({
-      optimization: {
-        minimize: true,
-        minimizer: ["...", new CssMinimizerPlugin()],
-      },
-    }),
-  });
-};
-
-/**
- * Enable GZIP compression.
- */
-export const gzip = (): Hook => {
-  return mode({ production: merge({ plugins: [new CompressionPlugin()] }) });
-};
-
-/**
  * Generate favicons and a web app manifest.
+ * @public
+ * @example
+ * favicons({
+ *   name: "Example",
+ *   logo: "assets/logo.png",
+ *   background: "#eee",
+ *   foreground: "#000",
+ * })
  */
 export const favicons = (options: FaviconOptions): Hook => {
   assert(options.name, "`favicons` expected a `name` property");
@@ -271,4 +301,60 @@ export const favicons = (options: FaviconOptions): Hook => {
   });
 
   return plugin(faviconPlugin);
+};
+
+/**
+ * Creates a dedicated output chunk for your application's dependencies.
+ *
+ * If your dependencies don't change on subsequent deployments of your application,
+ * your users can just use the cached version of your vendor bundle.
+ * @public
+ * @example
+ * vendor()
+ */
+export const vendor = (): Hook => {
+  return mode({
+    production: merge({
+      optimization: {
+        runtimeChunk: "single",
+        splitChunks: {
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendors",
+              enforce: true,
+              chunks: "all",
+            },
+          },
+        },
+      },
+    }),
+  });
+};
+
+/**
+ * Minify resulting JavaScript and CSS.
+ * @public
+ * @example
+ * minify()
+ */
+export const minify = (): Hook => {
+  return mode({
+    production: merge({
+      optimization: {
+        minimize: true,
+        minimizer: ["...", new CssMinimizerPlugin()],
+      },
+    }),
+  });
+};
+
+/**
+ * Enable GZIP compression.
+ * @public
+ * @example
+ * gzip()
+ */
+export const gzip = (): Hook => {
+  return mode({ production: merge({ plugins: [new CompressionPlugin()] }) });
 };

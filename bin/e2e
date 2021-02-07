@@ -23,10 +23,20 @@ rm -rf node_modules example/node_modules
 echo "==>> Installing dependencies..."
 yarn --cwd example install
 
-echo "==>> Building with webpack..."
+echo "==>> Building with webpack in development mode..."
+rm -rf example/dist/
+yarn --cwd example build:dev
+
+echo "==>> Smoke testing the development build..."
+assert-exists index.html
+assert-exists assets/js/main.js
+assert-exists assets/icons/favicon.png
+
+echo "==>> Building with webpack in production mode..."
+rm -rf example/dist/
 yarn --cwd example build
 
-echo "==>> Smoke testing..."
+echo "==>> Smoke testing the production build..."
 assert-exists index.html
 assert-exists index.html.gz
 assert-exists assets/js
