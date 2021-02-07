@@ -194,7 +194,12 @@ export const files = (options: FilesOptions): Hook => {
  * Produce an HTML file.
  */
 export const html = (options: HTMLOptions = {}): Hook => {
-  return plugin(new HtmlWebpackPlugin(options));
+  return plugin(
+    new HtmlWebpackPlugin({
+      scriptLoading: "defer",
+      ...options,
+    })
+  );
 };
 
 /**
