@@ -1,25 +1,36 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --env development",
+    "start": "webpack serve",
     "build": "webpack --env production"
   },
+  "babel": {
+    "presets": [
+      "@stackup/webpack/babel-preset"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
   "devDependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/preset-env": "^7.12.13",
-    "@babel/preset-react": "^7.12.13",
-    "@babel/preset-typescript": "^7.12.13",
     "@stackup/webpack": "file:..",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "postcss": "^8.2.4",
-    "typescript": "^4.1.3",
-    "webpack": "^5.21.1",
-    "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "typescript": "^4.1.3"
   }
 }

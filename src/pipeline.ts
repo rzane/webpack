@@ -3,7 +3,6 @@ import { Hook, Configuration } from "./types";
 interface Env {
   WEBPACK_BUILD?: true;
   WEBPACK_WATCH?: true;
-  development?: true;
   production?: true;
 }
 

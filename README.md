@@ -14,13 +14,51 @@ Functions that you can compose to build the perfect Webpack configuration. These
 
 ## Install
 
-This should be everything you'll need:
-
-    $ yarn add @stackup/webpack webpack@4.x webpack-cli@3.x webpack-dev-server --dev
-
-This package doesn't support Webpack 5 yet, due to the fact that many webpack plugins haven't been updated for compatibility yet.
+    $ yarn add @stackup/webpack --dev
 
 ## Usage
+
+### 1. Add scripts
+
+Add the following to your `package.json`.
+
+```json
+{
+  // ...
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack --env production"
+  }
+  // ...
+}
+```
+
+After adding this configuration, you can run:
+
+- `yarn start` to start the development server
+- `yarn build` to create a production build
+
+### 2. Configure Babel
+
+This library ships with a Babel preset to get you up and running quickly.
+
+To configure Babel, add the following to your `package.json`:
+
+```json
+{
+  // ...
+  "babel": {
+    "presets": ["@stackup/webpack/babel-preset"]
+  }
+  // ...
+}
+```
+
+### 3. Configure Webpack
+
+This library provides a set of functions that can be composed to generate a production-ready webpack configuration file.
+
+[You can get started by copying the example here.](example/webpack.config.js)
 
 ```javascript
 const path = require("path");
@@ -36,109 +74,19 @@ module.exports = webpack.pipeline([
     publicPath: "/",
   }),
 
-  // Build JavaScript/Typescript with Babel
-  webpack.babel(),
-
-  // Compile CSS with PostCSS
-  webpack.postcss(),
-
-  // Allow importing SVG files as React components
-  webpack.svg(),
-
-  // Load JPG and PNG as plain ol' files
-  webpack.files({ test: /\.(jpg|png)$/ }),
-
-  // Build an HTML file and bake in all of the necessary references.
-  webpack.html(),
-
-  // Create a vendor chunk to optimize your bundle!
-  webpack.vendor(),
-
-  // Minify JavaScript and CSS in production
-  webpack.minify(),
-
-  // Enable GZIP compression
-  webpack.gzip(),
-
-  // Generate favicons and a web app manifest.json
-  webpack.favicons({
-    name: "My App",
-    logo: "./src/assets/logo.png",
-    backgroundColor: "#ffffff",
-    themeColor: "#6c63ff",
-  }),
-
-  // Merge in environment-specific configuration
-  webpack.mode({
-    development: webpack.merge({
-      devServer: {
-        port: 3000,
-        contentBase: "./dist",
-        historyApiFallback: {
-          disableDotRule: true,
-        },
-      },
-    }),
-  }),
+  // More configuration goes here...
 ]);
 ```
 
-## Babel
+## Guides
 
-To compile modern JavaScript, you'll first need to install Babel:
+### Enabling TypeScript
 
-    $ yarn add @babel/core @babel/preset-env core-js --dev
+To use TypeScript, just install it:
 
-Next, you'll need to create a `.babelrc.js` file:
+    $ yarn add typescript --dev
 
-```javascript
-module.exports = (api) => {
-  const env = {
-    /**
-     * Import polyfills from core-js v3 as needed
-     */
-    useBuiltIns: "entry",
-    corejs: { version: 3 },
-
-    /**
-     * Setting `modules: false` enables ES modules, which is required
-     * for tree-shaking. However, Jest doesn't support ES modules.
-     *
-     * NOTE: The environment check must happen before enabling caching.
-     */
-    modules: api.env("test") ? "commonjs" : false,
-  };
-
-  /**
-   * Enable caching
-   */
-  api.cache(true);
-
-  /**
-   * Return our configuration
-   */
-  return {
-    presets: [["@babel/preset-env", env]],
-  };
-};
-```
-
-## TypeScript
-
-To build TypeScript applications, follow the instructions in the Babel section.
-
-You'll also need to install the Babel preset for TypeScript:
-
-    $ yarn add @babel/preset-typescript --dev
-
-Then, add the preset to your Babel configuration:
-
-```diff
-- presets: [["@babel/preset-env", env]],
-+ presets: [["@babel/preset-env", env], "@babel/preset-typescript"],
-```
-
-Finally, create a `tsconfig.json` file:
+Then, create a `tsconfig.json` file:
 
 ```json
 {
@@ -161,17 +109,34 @@ Finally, create a `tsconfig.json` file:
 The `target`, `module`, `moduleResolution`, and `jsx` are especially important.
 Those settings above instruct TypeScript to let Babel do the heavy lifting.
 
-## React
+### Polyfill missing browser features
 
-To build React applications, follow the instructions in the Babel section.
+First, specify which browsers you want your application to support in your `package.json`:
 
-You'll also need to install the Babel preset for React:
+```json
+{
+  // ...
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+  // ...
+}
+```
 
-    $ yarn add @babel/preset-react --dev
+Next, insert the following line at the very top of your entrypoint:
 
-Then, add the preset to your Babel configuration:
+```javascript
+import "core-js/stable";
+```
 
-```diff
-- presets: [["@babel/preset-env", env]],
-+ presets: [["@babel/preset-env", env], "@babel/preset-react"],
+The Babel preset that ships with `@stackup/webpack` will translate that import to a bunch of smaller imports based on your browserlist and the features that you application actually depends on. So, after compilation, it might look something like this:
+
+```javascript
+import "core-js/modules/es.array.unscopables.flat";
+import "core-js/modules/es.array.unscopables.flat-map";
 ```

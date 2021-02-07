@@ -44,20 +44,20 @@ const getLoaders = (config: any) => {
 };
 
 test("entry", () => {
-  const config = build("development");
+  const config = build({});
   expect(config.entry).toEqual({ app: "/tmp/a" });
 });
 
 describe("output", () => {
   test("development", () => {
-    const config = build("development");
+    const config = build({});
     expect(config.output!.path).toBeUndefined();
     expect(config.output!.publicPath).toEqual("/");
     expect(config.output!.filename).not.toContain("contenthash");
   });
 
   test("production", () => {
-    const config = build("production");
+    const config = build({ production: true });
     expect(config.output!.path).toEqual("dist");
     expect(config.output!.publicPath).toEqual("/");
     expect(config.output!.filename).toContain("contenthash");
@@ -65,21 +65,21 @@ describe("output", () => {
 });
 
 test("babel", () => {
-  const config = build("development");
+  const config = build({});
   const loaders = getLoaders(config);
   expect(loaders).toContainEqual(expect.stringContaining("babel-loader"));
 });
 
 describe("postcss", () => {
   test("development", () => {
-    const config = build("development");
+    const config = build({});
     const loaders = getLoaders(config);
     expect(loaders).toContainEqual(expect.stringContaining("style-loader"));
     expect(loaders).toContainEqual(expect.stringContaining("postcss-loader"));
   });
 
   test("production", () => {
-    const config = build("production");
+    const config = build({ production: true });
     const loaders = getLoaders(config);
     expect(loaders).not.toContainEqual(expect.stringContaining("style-loader"));
     expect(loaders).toContainEqual(expect.stringContaining("postcss-loader"));
@@ -88,70 +88,70 @@ describe("postcss", () => {
 });
 
 test("svg", () => {
-  const config = build("development");
+  const config = build({});
   const loaders = getLoaders(config);
   expect(loaders).toContainEqual(expect.stringContaining("@svgr/webpack"));
   expect(loaders).toContainEqual(expect.stringContaining("file-loader"));
 });
 
 test("files", () => {
-  const config = build("development");
+  const config = build({});
   const loaders = getLoaders(config);
   expect(loaders).toContainEqual(expect.stringContaining("file-loader"));
 });
 
 test("html", () => {
-  const config = build("development");
+  const config = build({});
   expect(config.plugins).toContainEqual(expect.any(HtmlWebpackPlugin));
 });
 
 describe("vendor", () => {
   test("development", () => {
-    const config = build("development");
+    const config = build({});
     expect(config.optimization).toBeUndefined();
   });
 
   test("production", () => {
-    const config = build("production");
+    const config = build({ production: true });
     expect(config.optimization!.splitChunks).toBeDefined();
   });
 });
 
 describe("minify", () => {
   test("development", () => {
-    const config = build("development");
+    const config = build({});
     expect(config.optimization).toBeUndefined();
   });
 
   test("production", () => {
-    const config = build("production");
+    const config = build({ production: true });
     expect(config.optimization!.minimize).toBeDefined();
   });
 });
 
 describe("gzip", () => {
   test("development", () => {
-    const config = build("development");
+    const config = build({});
     expect(config.plugins).not.toContainEqual(expect.any(CompressionPlugin));
   });
 
   test("production", () => {
-    const config = build("production");
+    const config = build({ production: true });
     expect(config.plugins).toContainEqual(expect.any(CompressionPlugin));
   });
 });
 
 test("favicons", () => {
-  const config = build("development");
+  const config = build({});
   expect(config.plugins).toContainEqual(expect.any(FaviconsWebpackPlugin));
 });
 
 test("rule", () => {
-  const config = build("development");
+  const config = build({});
   expect(config.module!.rules).toContainEqual(rule);
 });
 
 test("plugin", () => {
-  const config = build("development");
+  const config = build({});
   expect(config.plugins).toContain(plugin);
 });
