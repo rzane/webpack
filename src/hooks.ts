@@ -115,20 +115,25 @@ export const babel = (): Hook => {
  * Compile CSS with PostCSS
  */
 export const postcss = (): Hook => {
+  const test = /\.(css|pcss|postcss)$/;
+
+  const css = {
+    loader: require.resolve("css-loader"),
+    options: { importLoaders: 1 },
+  };
+
+  const postcss = {
+    loader: require.resolve("postcss-loader"),
+    options: { postcssOptions: { hideNothingWarning: true } },
+  };
+
   return mode({
     development: merge({
       module: {
         rules: [
           {
-            test: /\.(css|pcss|postcss)$/,
-            use: [
-              require.resolve("style-loader"),
-              {
-                loader: require.resolve("css-loader"),
-                options: { importLoaders: 1 },
-              },
-              require.resolve("postcss-loader"),
-            ],
+            test,
+            use: [require.resolve("style-loader"), css, postcss],
           },
         ],
       },
@@ -137,15 +142,8 @@ export const postcss = (): Hook => {
       module: {
         rules: [
           {
-            test: /\.(css|pcss|postcss)$/,
-            use: [
-              MiniCssExtractPlugin.loader,
-              {
-                loader: require.resolve("css-loader"),
-                options: { importLoaders: 1 },
-              },
-              require.resolve("postcss-loader"),
-            ],
+            test,
+            use: [MiniCssExtractPlugin.loader, css, postcss],
           },
         ],
       },
