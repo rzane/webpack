@@ -1,9 +1,11 @@
+import { HotModuleReplacementPlugin } from "webpack";
 import { merge as _merge } from "webpack-merge";
 import CompressionPlugin from "compression-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import {
   Configuration,
   Entry,
@@ -357,4 +359,23 @@ export const minify = (): Hook => {
  */
 export const gzip = (): Hook => {
   return mode({ production: merge({ plugins: [new CompressionPlugin()] }) });
+};
+
+/**
+ * Enable fast refresh for React. This depends on using the `hot` option
+ * for `@stackup/webpack/babel-preset`.
+ *
+ * @public
+ * @example
+ * fastRefresh()
+ */
+export const refresh = (): Hook => {
+  return mode({
+    development: merge({
+      plugins: [
+        new HotModuleReplacementPlugin(),
+        new ReactRefreshWebpackPlugin(),
+      ],
+    }),
+  });
 };

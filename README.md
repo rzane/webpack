@@ -20,6 +20,7 @@ Functions that you can compose to build the perfect Webpack configuration. These
 - [Guides](#guides)
   - [Enabling TypeScript](#enabling-typescript)
   - [Polyfill missing browser features](#polyfill-missing-browser-features)
+  - [Enabling Fast Refresh](#enabling-fast-refresh)
 
 ## Install
 
@@ -148,4 +149,32 @@ The Babel preset that ships with `@stackup/webpack` will translate that import t
 ```javascript
 import "core-js/modules/es.array.unscopables.flat";
 import "core-js/modules/es.array.unscopables.flat-map";
+```
+
+#### Enabling Fast Refresh
+
+_Note: This feature is experimental._
+
+To support fast refresh for React applications, you'll need to update your Babel configuration:
+
+```json
+{
+  // ...
+  "babel": {
+    "presets": [["@stackup/webpack/babel-preset", { "refresh": true }]]
+  }
+  // ...
+}
+```
+
+Then, you'll need to enable fast refresh in your webpack configuration:
+
+```javascript
+import * as webpack from "@stackup/webpack";
+
+module.exports = webpack.pipeline([
+  // ...
+  webpack.refresh(),
+  // ...
+]);
 ```

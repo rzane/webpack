@@ -1,8 +1,9 @@
 const path = require("path");
 
-module.exports = (api) => {
+module.exports = (api, opts) => {
   const isDev = api.env("development");
   const isTest = api.env("test");
+  const isRefresh = Boolean(opts && opts.refresh);
 
   /**
    * Enable caching
@@ -55,6 +56,7 @@ module.exports = (api) => {
           ),
         },
       ],
-    ],
+      isDev && isRefresh && require.resolve("react-refresh/babel"),
+    ].filter(Boolean),
   };
 };
