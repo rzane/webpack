@@ -157,7 +157,7 @@ _Note: This feature is experimental._
 
 To support fast refresh for React applications, you'll need to update your Babel configuration:
 
-```json
+```jsonc
 {
   // ...
   "babel": {
