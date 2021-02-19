@@ -10,10 +10,12 @@ toc:
       - rule
       - plugin
       - babel
+      - refresh
       - postcss
       - svg
       - files
       - vendor
+      - vendorEachModule
       - minify
       - gzip
       - html
