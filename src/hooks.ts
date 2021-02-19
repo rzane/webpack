@@ -18,6 +18,7 @@ import {
   OutputOptions,
   Plugin,
   Rule,
+  PostCSSOptions,
 } from "./types";
 
 const assert = (test: any, message: string) => {
@@ -161,17 +162,17 @@ export const babel = (): Hook => {
  * @example
  * postcss()
  */
-export const postcss = (): Hook => {
+export const postcss = (opts: PostCSSOptions = {}): Hook => {
   const test = /\.(css|pcss|postcss)$/;
 
   const css = {
     loader: require.resolve("css-loader"),
-    options: { importLoaders: 1 },
+    options: { ...opts, importLoaders: 1 },
   };
 
   const postcss = {
     loader: require.resolve("postcss-loader"),
-    options: { postcssOptions: { hideNothingWarning: true } },
+    options: { ...opts, postcssOptions: { hideNothingWarning: true } },
   };
 
   return mode({

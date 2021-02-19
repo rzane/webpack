@@ -88,3 +88,7 @@ export interface FaviconOptions {
    */
   appleStatusBarStyle?: "black-translucent" | "default" | "black";
 }
+
+export interface PostCSSOptions {
+  sourceMap?: boolean;
+}
