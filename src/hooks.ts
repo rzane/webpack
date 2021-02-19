@@ -6,6 +6,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import { getVendorName, VENDOR_CONFIG } from "./vendor";
 import {
   Configuration,
   Entry,
@@ -307,10 +308,18 @@ export const favicons = (options: FaviconOptions): Hook => {
 };
 
 /**
- * Creates a dedicated output chunk for your application's dependencies.
+ * After using this hook, you'll have a single file that contains all of the
+ * node modules used in your application. For example:
  *
- * If your dependencies don't change on subsequent deployments of your application,
- * your users can just use the cached version of your vendor bundle.
+ *    assets/js/main.js
+ *    assets/js/vendor.js
+ *
+ * This increases the likelihood of a cache hit on subsequent deploys. If none
+ * of your dependencies change, your users can use a cached version of the
+ * vendors file.
+ *
+ * This hook is mutually exclusive with the {@see vendorEachModule} hook.
+ *
  * @public
  * @example
  * vendor()
@@ -322,11 +331,43 @@ export const vendor = (): Hook => {
         runtimeChunk: "single",
         splitChunks: {
           cacheGroups: {
+            vendor: VENDOR_CONFIG,
+          },
+        },
+      },
+    }),
+  });
+};
+
+/**
+ * After using this hook, you'll have a file for each top-level node module in
+ * your application. For example:
+ *
+ *     assets/js/main.js
+ *     assets/js/vendor/react.js
+ *     assets/js/vendor/react-router.js
+ *     assets/js/vendor/react-router-dom.js
+ *
+ * This maximizes the likelihood of a cache hit on subsequent deploys, but it
+ * also results in a lot of HTTP requests. If your server doesn't support
+ * HTTP/2, you are probably better off using the {@see vendor} hook.
+ *
+ * This hook is mutually exclusive with the {@see vendor} hook.
+ *
+ * @public
+ * @example
+ * vendorEachModule()
+ */
+export const vendorEachModule = (): Hook => {
+  return mode({
+    production: merge({
+      optimization: {
+        runtimeChunk: "single",
+        splitChunks: {
+          cacheGroups: {
             vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: "vendors",
-              enforce: true,
-              chunks: "all",
+              ...VENDOR_CONFIG,
+              name: (mod: any) => getVendorName(mod.context),
             },
           },
         },
