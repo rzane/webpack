@@ -58,7 +58,10 @@ export const mode = (options: ModeOptions): Hook => (config) => {
 
 /**
  * Configure the webpack entrypoint or entrypoints.
- * @see https://webpack.js.org/concepts/entry-points/
+ *
+ * See the [Webpack documentation](https://webpack.js.org/concepts/entry-points/)
+ * for more information.
+ *
  * @public
  * @example <caption>A single entrypoint</caption>
  * entry("src/index.ts")
@@ -76,7 +79,10 @@ export const entry = (entry: string | string[] | Entry): Hook => {
 
 /**
  * Set the output directory
- * @see https://webpack.js.org/concepts/output/
+ *
+ * See the [Webpack documentation](https://webpack.js.org/concepts/output/)
+ * for more information.
+ *
  * @public
  * @example
  * output({
@@ -318,7 +324,7 @@ export const favicons = (options: FaviconOptions): Hook => {
  * of your dependencies change, your users can use a cached version of the
  * vendors file.
  *
- * This hook is mutually exclusive with the {@see vendorEachModule} hook.
+ * This hook is mutually exclusive with the [vendorEachModule](#vendoreachmodule) hook.
  *
  * @public
  * @example
@@ -350,9 +356,9 @@ export const vendor = (): Hook => {
  *
  * This maximizes the likelihood of a cache hit on subsequent deploys, but it
  * also results in a lot of HTTP requests. If your server doesn't support
- * HTTP/2, you are probably better off using the {@see vendor} hook.
+ * HTTP/2, you are probably better off using the [vendor](#vendor) hook.
  *
- * This hook is mutually exclusive with the {@see vendor} hook.
+ * This hook is mutually exclusive with the [vendor](#vendor) hook.
  *
  * @public
  * @example
