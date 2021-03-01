@@ -49,7 +49,7 @@
     "documentation": "^13.1.1",
     "jest": "^26.6.3",
     "postcss": "^8.2.6",
-    "ts-jest": "^26.5.1",
+    "ts-jest": "^26.5.2",
     "typescript": "^4.1.5"
   }
 }
