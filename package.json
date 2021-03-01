@@ -30,7 +30,7 @@
     "compression-webpack-plugin": "^7.1.2",
     "css-loader": "^5.0.2",
     "css-minimizer-webpack-plugin": "^1.2.0",
-    "favicons": "^6.2.0",
+    "favicons": "^6.2.1",
     "favicons-webpack-plugin": "^5.0.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.1.0",
