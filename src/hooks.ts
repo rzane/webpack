@@ -306,6 +306,7 @@ export const favicons = (options: FaviconOptions): Hook => {
       developerURL: null,
       background: options.background || "#fff",
       theme_color: options.themeColor || "#fff",
+      appleStatusBarStyle: options.appleStatusBarStyle,
       icons: { coast: false, yandex: false },
     },
   });
