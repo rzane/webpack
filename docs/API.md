@@ -242,7 +242,7 @@ Returns **Hook**
 
 ### refresh
 
-[src/hooks.ts:420-429][61]
+[src/hooks.ts:421-430][61]
 
 Enable fast refresh for React. This depends on using the `hot` option
 for `@stackup/webpack/babel-preset`.
@@ -340,7 +340,7 @@ Returns **Hook**
 
 ### vendor
 
-[src/hooks.ts:333-346][65]
+[src/hooks.ts:334-347][65]
 
 After using this hook, you'll have a single file that contains all of the
 node modules used in your application. For example:
@@ -364,7 +364,7 @@ Returns **Hook**
 
 ### vendorEachModule
 
-[src/hooks.ts:367-383][66]
+[src/hooks.ts:368-384][66]
 
 After using this hook, you'll have a file for each top-level node module in
 your application. For example:
@@ -390,7 +390,7 @@ Returns **Hook**
 
 ### minify
 
-[src/hooks.ts:391-400][67]
+[src/hooks.ts:392-401][67]
 
 Minify resulting JavaScript and CSS.
 
@@ -404,7 +404,7 @@ Returns **Hook**
 
 ### gzip
 
-[src/hooks.ts:408-410][68]
+[src/hooks.ts:409-411][68]
 
 Enable GZIP compression.
 
@@ -436,7 +436,7 @@ Returns **Hook**
 
 ### favicons
 
-[src/hooks.ts:292-314][70]
+[src/hooks.ts:292-315][70]
 
 Generate favicons and a web app manifest.
 
@@ -553,46 +553,46 @@ Returns **Hook**
 
 [48]: #examples-17
 
-[49]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/pipeline.ts#L23-L34 "Source code on GitHub"
+[49]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/pipeline.ts#L23-L34 "Source code on GitHub"
 
 [50]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[51]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L41-L43 "Source code on GitHub"
+[51]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L41-L43 "Source code on GitHub"
 
-[52]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L53-L57 "Source code on GitHub"
+[52]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L53-L57 "Source code on GitHub"
 
-[53]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L76-L78 "Source code on GitHub"
+[53]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L76-L78 "Source code on GitHub"
 
 [54]: https://webpack.js.org/concepts/entry-points/
 
 [55]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[56]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L93-L113 "Source code on GitHub"
+[56]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L93-L113 "Source code on GitHub"
 
 [57]: https://webpack.js.org/concepts/output/
 
-[58]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L124-L126 "Source code on GitHub"
+[58]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L124-L126 "Source code on GitHub"
 
-[59]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L134-L136 "Source code on GitHub"
+[59]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L134-L136 "Source code on GitHub"
 
-[60]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L144-L164 "Source code on GitHub"
+[60]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L144-L164 "Source code on GitHub"
 
-[61]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L420-L429 "Source code on GitHub"
+[61]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L421-L430 "Source code on GitHub"
 
-[62]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L172-L213 "Source code on GitHub"
+[62]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L172-L213 "Source code on GitHub"
 
-[63]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L229-L240 "Source code on GitHub"
+[63]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L229-L240 "Source code on GitHub"
 
-[64]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L252-L264 "Source code on GitHub"
+[64]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L252-L264 "Source code on GitHub"
 
-[65]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L333-L346 "Source code on GitHub"
+[65]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L334-L347 "Source code on GitHub"
 
-[66]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L367-L383 "Source code on GitHub"
+[66]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L368-L384 "Source code on GitHub"
 
-[67]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L391-L400 "Source code on GitHub"
+[67]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L392-L401 "Source code on GitHub"
 
-[68]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L408-L410 "Source code on GitHub"
+[68]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L409-L411 "Source code on GitHub"
 
-[69]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L272-L279 "Source code on GitHub"
+[69]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L272-L279 "Source code on GitHub"
 
-[70]: https://github.com/rzane/webpack/blob/0fd06101420d66165e2588e770109bd3d3ee5ae7/src/hooks.ts#L292-L314 "Source code on GitHub"
+[70]: https://github.com/rzane/webpack/blob/a3ff397ace075782c06f433808b3674ffe0af0c1/src/hooks.ts#L292-L315 "Source code on GitHub"
