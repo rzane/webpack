@@ -1,5 +1,4 @@
 import { Options as HTMLOptions } from "html-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
 import {
   Configuration,
   Entry,
@@ -52,4 +51,5 @@ export interface PostCSSOptions {
   sourceMap?: boolean;
 }
 
-export type CopyOptions = ConstructorParameters<typeof CopyPlugin>[0];
+// FIXME: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/51556
+export type CopyOptions = any;
