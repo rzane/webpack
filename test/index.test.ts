@@ -26,7 +26,6 @@ const build = webpack.pipeline([
   webpack.rule(rule),
   webpack.files({ test: /\.mp4/ }),
   webpack.plugin(plugin),
-  webpack.favicons({ name: "Example", logo: "src/assets/logo.png" }),
 ]);
 
 const getLoaders = (config: any) => {

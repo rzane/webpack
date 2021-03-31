@@ -4,13 +4,11 @@ import CompressionPlugin from "compression-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { getVendorName, VENDOR_CONFIG } from "./vendor";
 import {
   Configuration,
   Entry,
-  FaviconOptions,
   FilesOptions,
   HTMLOptions,
   Hook,
@@ -276,42 +274,6 @@ export const html = (options: HTMLOptions = {}): Hook => {
       ...options,
     })
   );
-};
-
-/**
- * Generate favicons and a web app manifest.
- * @public
- * @example
- * favicons({
- *   name: "Example",
- *   logo: "assets/logo.png",
- *   background: "#eee",
- *   foreground: "#000",
- * })
- */
-export const favicons = (options: FaviconOptions): Hook => {
-  assert(options.name, "`favicons` expected a `name` property");
-  assert(options.logo, "`favicons` expected a `logo` property");
-
-  const faviconPlugin = new FaviconsWebpackPlugin({
-    logo: options.logo,
-    prefix: "assets/icons/",
-    cache: true,
-    mode: "webapp",
-    devMode: "light",
-    favicons: {
-      appName: options.name,
-      appShortName: options.shortName,
-      appDescription: options.description,
-      developerURL: null,
-      background: options.background || "#fff",
-      theme_color: options.themeColor || "#fff",
-      appleStatusBarStyle: options.appleStatusBarStyle,
-      icons: { coast: false, yandex: false },
-    },
-  });
-
-  return plugin(faviconPlugin);
 };
 
 /**

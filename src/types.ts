@@ -47,48 +47,6 @@ export interface FilesOptions {
   test: RegExp;
 }
 
-export interface FaviconOptions {
-  /**
-   * The name of your app.
-   */
-  name: string;
-
-  /**
-   * A shorter variant of your app's name.
-   */
-  shortName?: string;
-
-  /**
-   * A description of what your app does.
-   */
-  description?: string;
-
-  /**
-   * The logo for your app. This will be used to generate favicons.
-   */
-  logo: string;
-
-  /**
-   * Your app's version number.
-   */
-  version?: string;
-
-  /**
-   * Background color for flattened icons.
-   */
-  background?: string;
-
-  /**
-   * Theme color user for example in Android's task switcher.
-   */
-  themeColor?: string;
-
-  /**
-   * Style for Apple status bar
-   */
-  appleStatusBarStyle?: "black-translucent" | "default" | "black";
-}
-
 export interface PostCSSOptions {
   sourceMap?: boolean;
 }
