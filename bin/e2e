@@ -30,7 +30,6 @@ yarn --cwd example build:dev
 echo "==>> Smoke testing the development build..."
 assert-exists index.html
 assert-exists assets/js/main.js
-assert-exists assets/icons/favicon.png
 
 echo "==>> Building with webpack in production mode..."
 rm -rf example/dist/
@@ -42,4 +41,3 @@ assert-exists index.html.gz
 assert-exists assets/js
 assert-exists assets/css
 assert-exists assets/media
-assert-exists assets/icons
