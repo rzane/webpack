@@ -4,6 +4,7 @@ module.exports = (api, opts) => {
   const isDev = api.env("development");
   const isTest = api.env("test");
   const isRefresh = Boolean(opts && opts.refresh);
+  const useBuiltIns = (opts && opts.useBuiltIns) || "entry";
 
   /**
    * Enable caching
@@ -24,7 +25,7 @@ module.exports = (api, opts) => {
             }
           : {
               // Allow importing core-js in entrypoint and use browserlist to select polyfills
-              useBuiltIns: "entry",
+              useBuiltIns,
               // Set the corejs version we are using to avoid warnings in console
               corejs: 3,
               // Exclude transforms that make all code slower
