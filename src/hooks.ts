@@ -1,10 +1,11 @@
 import { HotModuleReplacementPlugin } from "webpack";
 import { merge as _merge } from "webpack-merge";
+import CopyPlugin from "copy-webpack-plugin";
 import CompressionPlugin from "compression-webpack-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { getVendorName, VENDOR_CONFIG } from "./vendor";
 import {
   Configuration,
@@ -18,6 +19,7 @@ import {
   Plugin,
   Rule,
   PostCSSOptions,
+  CopyOptions,
 } from "./types";
 
 const assert = (test: any, message: string) => {
@@ -131,6 +133,16 @@ export const rule = (rule: Rule): Hook => {
  */
 export const plugin = (plugin: Plugin): Hook => {
   return merge({ plugins: [plugin] });
+};
+
+/**
+ * Copy files
+ * @public
+ * @example
+ * copy({ patterns: [{ from: "public", to: "dist" }] })
+ */
+export const copy = (opts: CopyOptions) => {
+  return plugin(new CopyPlugin(opts));
 };
 
 /**
@@ -269,7 +281,7 @@ export const files = (options: FilesOptions): Hook => {
  */
 export const html = (options: HTMLOptions = {}): Hook => {
   return plugin(
-    new HtmlWebpackPlugin({
+    new HtmlPlugin({
       scriptLoading: "defer",
       ...options,
     })
@@ -383,10 +395,7 @@ export const gzip = (): Hook => {
 export const refresh = (): Hook => {
   return mode({
     development: merge({
-      plugins: [
-        new HotModuleReplacementPlugin(),
-        new ReactRefreshWebpackPlugin(),
-      ],
+      plugins: [new HotModuleReplacementPlugin(), new ReactRefreshPlugin()],
     }),
   });
 };

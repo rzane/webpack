@@ -1,4 +1,5 @@
 import { Options as HTMLOptions } from "html-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
 import {
   Configuration,
   Entry,
@@ -50,3 +51,5 @@ export interface FilesOptions {
 export interface PostCSSOptions {
   sourceMap?: boolean;
 }
+
+export type CopyOptions = ConstructorParameters<typeof CopyPlugin>[0];

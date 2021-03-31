@@ -1,8 +1,8 @@
 import * as webpack from "../src";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import HTMLPlugin from "html-webpack-plugin";
 import CompressionPlugin from "compression-webpack-plugin";
-import FaviconsWebpackPlugin from "favicons-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
 
 const rule: webpack.Rule = {
   test: /foo/,
@@ -26,6 +26,7 @@ const build = webpack.pipeline([
   webpack.rule(rule),
   webpack.files({ test: /\.mp4/ }),
   webpack.plugin(plugin),
+  webpack.copy({ patterns: [{ from: "foo", to: "bar" }] }),
 ]);
 
 const getLoaders = (config: any) => {
@@ -101,7 +102,7 @@ test("files", () => {
 
 test("html", () => {
   const config = build({});
-  expect(config.plugins).toContainEqual(expect.any(HtmlWebpackPlugin));
+  expect(config.plugins).toContainEqual(expect.any(HTMLPlugin));
 });
 
 describe("vendor", () => {
@@ -140,14 +141,14 @@ describe("gzip", () => {
   });
 });
 
-test("favicons", () => {
-  const config = build({});
-  expect(config.plugins).toContainEqual(expect.any(FaviconsWebpackPlugin));
-});
-
 test("rule", () => {
   const config = build({});
   expect(config.module!.rules).toContainEqual(rule);
+});
+
+test("copy", () => {
+  const config = build({});
+  expect(config.plugins).toContainEqual(expect.any(CopyPlugin));
 });
 
 test("plugin", () => {
